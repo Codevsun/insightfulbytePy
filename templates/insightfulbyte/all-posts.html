@@ -8,14 +8,22 @@
             <div class="posts-container">
                 <header class="page-header">
             <h1>All Posts</h1>
-            {% if user.is_authenticated %}
-                <a href="{% url 'create-post' %}" class="btn btn-primary" style="margin-bottom: 20px; display: inline-block; padding: 8px 16px; font-size: 16px; width: 200px; text-align: center;">Create New Post</a>
-            {% endif %}
-            <div class="page-actions">
+      
+
                 {% if user.is_authenticated %}
-                    <a href="{% url 'my-posts' %}" class="btn btn-secondary" style="margin-bottom: 10px; padding: 8px 16px; font-size: 16px; width: 200px; text-align: center; display: inline-block;">My Posts</a>
+                <div class="post-actions">
+
+                    <a href="{% url 'my-posts' %}" class="btn btn-secondary">My Posts</a>
+                </div>
                 {% endif %}
-            </div>
+
+                {% if user.is_authenticated %}
+                <div class="post-actions" style="margin-top: 10px;">
+    
+                    <a href="{% url 'create-post' %}" class="btn btn-primary" >Create New Post</a>
+                    </div>
+                {% endif %}
+
         </header>
 
         {% if messages %}
