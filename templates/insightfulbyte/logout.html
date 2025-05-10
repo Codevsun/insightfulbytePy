@@ -1,0 +1,11 @@
+{% extends 'insightfulbyte/header.html' %}
+
+{% block content %}
+<div class="logout-container" style="display: flex; justify-content: center; align-items: center;">
+    <div class="logout-box" style="background: #000000; color: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(255,255,255,0.1); padding: 2rem; text-align: center;">
+        <h1 style="font-size: 2rem; margin-bottom: 2rem;">Logging Out...</h1>
+        <p>You are being logged out and redirected to the home page.</p>
+        <meta http-equiv="refresh" content="2;url={% url 'home' %}">
+    </div>
+</div>
+{% endblock %}

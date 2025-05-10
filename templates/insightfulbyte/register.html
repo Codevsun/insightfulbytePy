@@ -1,0 +1,49 @@
+{% extends 'insightfulbyte/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="register-container" style="display: flex; justify-content: center; align-items: center; margin-top: 50px; margin-bottom: 50px ; ">
+    <div class="register-box" style="background: #000000; color: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+        <h1 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Create an Account</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Join our community and start sharing your thoughts</p>
+
+        {% if error %}
+            <div class="error-message" style="background: #1a0000; color: #ff4444; border: 1px solid #ff4444; border-radius: 8px; padding: 1rem;">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'register' %}" class="register-form" style="background: #000000; color: #ffffff; padding: 2rem; border-radius: 15px;">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Username:</label>
+                <input type="text" id="username" name="username" required 
+                    style="background: #111111; color: #ffffff; border: 1px solid #333333; border-radius: 8px; padding: 0.75rem; width: 100%; margin-top: 0.5rem; transition: border-color 0.3s ease;">
+            </div>
+
+            <div class="form-group">
+                <label for="email" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Email:</label>
+                <input type="email" id="email" name="email" required
+                    style="background: #111111; color: #ffffff; border: 1px solid #333333; border-radius: 8px; padding: 0.75rem; width: 100%; margin-top: 0.5rem; transition: border-color 0.3s ease;">
+            </div>
+            
+            <div class="form-group">
+                <label for="password" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Password:</label>
+                <input type="password" id="password" name="password" required
+                    style="background: #111111; color: #ffffff; border: 1px solid #333333; border-radius: 8px; padding: 0.75rem; width: 100%; margin-top: 0.5rem; transition: border-color 0.3s ease;">
+                <small style="color: #666666; font-size: 0.8rem;">Minimum 8 characters</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" style="background: #6b46c1; color: #ffffff; border: none; padding: 1rem 2rem; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; margin-top: 1rem; box-shadow: 0 0 15px rgba(107, 70, 193, 0.3);">Register</button>
+            </div>
+
+            <div class="auth-links" style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem;">
+                Already have an account? <a href="{% url 'login' %}" style="color: #6b46c1; text-decoration: none; font-weight: bold;">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

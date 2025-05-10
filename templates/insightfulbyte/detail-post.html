@@ -1,0 +1,35 @@
+{% extends 'insightfulbyte/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="site-content">
+    <div class="container" style="background-color: #1a1b1e; border: 1px solid #333333; padding: 2.5rem; border-radius: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <article class="post" >
+            <header class="post-header">
+                <h1 class="post-title">{{ post.title }}</h1>
+                
+                <div class="post-meta">
+                    <span class="post-author"><i class="fas fa-user"></i> {{ post.user.username }}</span>
+                    <span class="post-date"><i class="fas fa-calendar-alt"></i> {{ post.created_at|date:"F j, Y" }}</span>
+                </div>
+            </header>
+            
+            <div class="post-content">
+                {{ post.content|linebreaksbr }}
+            </div>
+            
+            {% if user.is_authenticated and post.user == user %}
+                <div class="post-management">
+                    <a href="{% url 'post-update' post.id %}" class="btn btn-edit"><i class="fas fa-edit"></i>Edit Post</a>
+                    <a href="{% url 'post-delete' post.id %}" class="btn btn-delete"><i class="fas fa-trash-alt"></i>Delete Post</a>
+                </div>
+            {% endif %}
+        </article>
+        
+        <div class="post-navigation">
+            <a href="{% url 'all-posts' %}" class="btn btn-back"><i class="fas fa-arrow-left"></i>Back to All Posts</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

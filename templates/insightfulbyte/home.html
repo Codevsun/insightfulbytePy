@@ -1,0 +1,35 @@
+{% extends 'insightfulbyte/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="site-content">
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>{{ site_name|default:"InsightfulByte" }}</h1>
+                <p>{{ site_tagline|default:"Insights on Technology and Web Development" }}</p>
+                <a href="#blog-posts" class="btn btn-primary">Read Our Blog</a>
+            </div>
+        </section>
+
+        <section id="blog-posts" class="blog-section">
+            <div class="section-header">
+                <h2>Latest Articles</h2>
+                <p>Explore our most recent insights and tutorials</p>
+            </div>
+            {% include 'insightfulbyte/post-display.html' %}
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Want to Learn More?</h2>
+                <p>Subscribe to our newsletter for the latest updates and exclusive content.</p>
+                <form class="newsletter-form" action="#" method="post">
+                    <input type="email" name="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

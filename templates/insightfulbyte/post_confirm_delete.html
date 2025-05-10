@@ -1,0 +1,38 @@
+{% extends 'insightfulbyte/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="site-content">
+    <div class="container">
+        <main class="main-content">
+            <div class="delete-post">
+                <h1>Delete Post</h1>
+
+                <div class="delete-confirmation">
+                    <p>Are you sure you want to delete the post "<strong>{{ post.title }}</strong>"?</p>
+                    <p class="warning">This action cannot be undone.</p>
+
+                    <div class="post-preview" style="background-color: rgb(17, 17, 24); border: 1px solid #333333; padding: 1rem; border-radius: 10px; margin: 1.5rem 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+                        <h3>{{ post.title }}</h3>
+                        <div class="post-meta">
+                            <span class="post-author"><i class="fas fa-user"></i> {{ post.user.username }}</span>
+                            <span class="post-date"><i class="fas fa-calendar-alt"></i> {{ post.created_at|date:"F j, Y" }}</span>
+                        </div>
+                        <div class="post-excerpt">
+                            {{ post.content|truncatechars:150 }}
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete" style="background-color: #dc3545; color: white; margin-right: 10px;">Yes, Delete Post</button>
+                            <a href="{% url 'detail-post' post.id %}" class="btn btn-cancel">No, Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

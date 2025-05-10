@@ -1,0 +1,38 @@
+{% extends 'insightfulbyte/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="site-content">
+    <div class="container">
+        <main class="main-content">
+    <div class="posts-container">
+        <header class="page-header">
+            <h1>My Posts</h1>
+            <a href="{% url 'create-post' %}" class="btn btn-primary" style="margin-bottom: 20px; display: inline-block; padding: 8px 16px; font-size: 16px; width: 200px; text-align: center;">Create New Post</a>
+            <div class="page-actions">
+                <a href="{% url 'all-posts' %}" class="btn btn-secondary" style="margin-bottom: 10px; padding: 8px 16px; font-size: 16px; width: 200px; text-align: center; display: inline-block;">All Posts</a>
+            </div>
+        </header>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'deleted' in message.tags %}
+                    <div class="success-message">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if not posts %}
+            <div class="no-posts-message">
+                <p>You haven't created any posts yet.</p>
+            </div>
+        {% else %}
+            {% include 'insightfulbyte/post-display.html' with hide_create_button=True %}
+        {% endif %}
+    </div>
+</main>
+</div>
+</div>
+{% endblock %}
